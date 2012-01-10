@@ -1,4 +1,4 @@
-# Web site for Sapporo.js
+# Firefly for sapporojs.org
 
 http://sapporojs.org
 
