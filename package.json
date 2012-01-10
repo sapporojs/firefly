@@ -1,0 +1,21 @@
+{
+    "name": "sapporojs-firefly"
+  , "description": "Web site for Sapporo.js"
+  , "version": "0.2.0"
+  , "author": "Ryunosuke SATO <tricknotes.rs@gmail.com>"
+  , "dependencies": {
+      "zappa": "~> 0.3.3"
+    , "coffee-script": ">= 1.1.2 < 2.0.0"
+  }
+  , "engines": {
+      "node": ">= 0.4.0"
+  }
+  , "scripts": {
+      "start": "node server.js"
+  }
+  , "homepage": "http://sapporojs.org/"
+  , "repository": {
+      "type": "git"
+    , "url": "git://github.com/tricknotes/sapporojs-web.git"
+  }
+}
