@@ -38,6 +38,10 @@ FireFly.remove = (id) ->
   cursor?.remove()
   delete cursor
 
+# set listener for counter changed event
+window.counterListener = (count) ->
+  # noop
+
 jQuery ($) ->
   socket = io.connect("http://tricknotes.no.de/")
   socket.on "info", (data) ->
@@ -62,23 +66,5 @@ jQuery ($) ->
       x: e.clientX
       y: e.clientY
 
-  counter = $("<div />")
-  counter.attr("align", "center").css(
-    "font-size": "3em"
-    "line-height": "1"
-    top: 0
-    left: w.width() - counter.width()
-    width: 50
-    height: 50
-    "border-radius": 25
-    position: "fixed"
-    color: "white"
-    "background-color": "rgb(128,30,0)"
-  ).css("background-color", "rgba(128,30,0,0.4)").appendTo document.body
-
-  notifyCount = (count) ->
-    counter.css("left", w.width() - counter.width()).text(count).fadeIn 3000, ->
-      counter.fadeOut 2000
-
   socket.on "change count", (data) ->
-    notifyCount data.clientCount
+    window.counterListener data.clientCount
