@@ -1,6 +1,6 @@
-class Cursor
+class FireFly
   constructor: ->
-    color = Cursor.randomColor().join(",")
+    color = FireFly.randomColor().join(",")
     @body = jQuery("<div />").css(
       height: 14
       width: 14
@@ -21,19 +21,19 @@ class Cursor
   remove: ->
     @body.remove()
 
-Cursor.cursors = {}
+FireFly.cursors = {}
 
-Cursor.randomColor = ->
+FireFly.randomColor = ->
   for _ in [ "red", "green", "blue" ]
     Math.floor Math.random() * 256
 
-Cursor.add = (id) ->
-  @cursors[id] = new Cursor(id).appear()
+FireFly.add = (id) ->
+  @cursors[id] = new FireFly(id).appear()
 
-Cursor.get = (id) ->
+FireFly.get = (id) ->
   @cursors[id] ||= @add(id)
 
-Cursor.remove = (id) ->
+FireFly.remove = (id) ->
   cursor = @cursors[id]
   cursor?.remove()
   delete cursor
@@ -44,15 +44,15 @@ jQuery ($) ->
     console.log JSON.stringify(data)
 
   socket.on "entry cursor", (data) ->
-    Cursor.add data.id
+    FireFly.add data.id
 
   socket.on "move cursor", (data) ->
     screen = data.screen
-    cursor = Cursor.get(data.id)
+    cursor = FireFly.get(data.id)
     cursor.update screen.x * w.width() / screen.width, screen.y * w.height() / screen.height
 
   socket.on "disconnect", (data) ->
-    Cursor.remove data.id
+    FireFly.remove data.id
 
   w = $(window)
   w.mousemove (e) ->
